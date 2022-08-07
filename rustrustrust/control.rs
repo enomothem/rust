@@ -1,18 +1,28 @@
+//// ;;;; ;;;; ;;;; ;;;;
 // Title: Contorl flow 
-
+//// ;;;; ;;;; ;;;; ;;;;
 fn main()
 {
     if_flow();
+    if_let_flow(false);
     loop_flow();
+    loop_let_flow(20);
+    tag_mulloop_flow();
     while_flow();
-    for_array_flow();
+    while_array_flow();
     for_flow();
+    for_array_flow();
+
 
 }
 
+// ;;;; ;;;; ;;;; ;;;;
+// if
+// ;;;; ;;;; ;;;; ;;;;
 
 fn if_flow()
 {
+
     let cat = 3;
     if cat < 5
     {
@@ -23,8 +33,15 @@ fn if_flow()
     }
 }
 
+fn if_let_flow(condition:bool)
+{
+    // if and else type must same. else err!
+    let rust = if condition {"A"} else {"B"};
+    println!{"{rust}"};
+}
+
 // ;;;; ;;;; ;;;; ;;;; ;;
-// for . loop . while  ;;
+// for . loop . while 
 // ;;;; ;;;; ;;;; ;;;; ;;
 
 fn loop_flow()
@@ -42,6 +59,51 @@ fn loop_flow()
     }
 }
 
+fn loop_let_flow(x: i32)
+{
+    let mut poc = 0;
+    println!{"you setting: {}", x};
+    let rust = loop
+    {
+        poc += 1;
+        if poc == 50
+        {
+            poc = poc * 2 - 1;
+        }
+        if poc == 100
+        {
+            break poc * 2 * x     //  result value
+        }
+        if poc == 20
+        {
+            for rust in 1..10
+            {
+                print!{"*{rust}"};
+            }
+        }
+    };
+    println!("\nThe result is {rust}");
+}
+
+fn tag_mulloop_flow()
+{
+    let mut poc = 1;
+    'fuck:loop
+    {
+        println!("poc = {poc}");
+        let mut rust = 10;
+        loop
+        {
+            println!("rust = {rust}");
+            if rust == 9 {break;}
+            if poc == 2 {break 'fuck;}
+            rust -= 1;
+        }
+        poc += 1;
+    }
+    println!("end poc: {poc}");
+}
+
 fn while_flow()
 {
     let mut fk = 3;
@@ -53,23 +115,15 @@ fn while_flow()
     println!("end!");
 }
 
-// for -0 //
-
-fn for_array_flow()
+fn while_array_flow()
 {
-    println!("This for_array_flow test zone !");
-    let array =  [ 2, 3, 12, 13, 111, 134 ];
-    let mut index = 0;
-
-    while index < 6
+    let rustc = [ 30, 20, 50, 100, 200];
+    let mut i = 0;
+    while i < 5
     {
-        println!("=========={}===========",array[index]);
-        index += 1;
-    }
-
-    for rust in array
-    {
-        println!("=========={rust}===========");
+        print!("{}",rustc[i]);
+        if i!=4 {print!(" ");}else{println!();break;} 
+        i += 1;
     }
 }
 
@@ -226,3 +280,22 @@ fn for_flow()
         }
     }
 }
+
+fn for_array_flow()
+{
+    println!("This for_array_flow test zone !");
+    let array =  [ 2, 3, 12, 13, 111, 134 ];
+    let mut index = 0;
+
+    while index < 6
+    {
+        println!("=========={}===========",array[index]);
+        index += 1;
+    }
+
+    for rust in array
+    {
+        println!("=========={rust}===========");
+    }
+}
+
