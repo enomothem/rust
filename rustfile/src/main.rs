@@ -5,4 +5,6 @@ fn main() {
     println!("SS");
 
     println!("Start");
+
+    println!("");
 }
